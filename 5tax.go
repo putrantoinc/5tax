@@ -43,9 +43,9 @@ func CalculateTax(taxIncome float64) float64 {
   case taxIncome <= level3.max && taxIncome >= level3.min:
     taxAmt = 3572 + (taxIncome-level2.max)*0.325
   case taxIncome <= level4.max && taxIncome >= level4.min:
-    taxAmt = 17547 + (taxIncome-level3.max)*0.37
+    taxAmt = 19822 + (taxIncome-level3.max)*0.37
   case taxIncome >= level5.min:
-    taxAmt = 54547 + (taxIncome-level4.max)*0.45
+    taxAmt = 54232 + (taxIncome-level4.max)*0.45
   }
 
   return taxAmt
@@ -57,10 +57,14 @@ func main(){
   now := time.Now()
   fmt.Println("Today's date is",now)
 
-  income = 82000
+  income = 1000000
   tax = CalculateTax(income)
 
   fmt.Println("In", now.Year(),"I have to pay tax amounted to AUD", tax)
+  fmt.Println("Including Levy", tax+0.02*tax)
+
   fmt.Println("The tax is", tax/income, "% from the total amount")
+  fmt.Println("Including Levy", (tax+0.02*tax)/income, "%")
+
 
 }
